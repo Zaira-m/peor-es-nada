@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Publicaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="publicaciones.length > 0; else noData">
+    <ion-item *ngFor="let publicacion of publicaciones; let i = index">
+      <ion-thumbnail slot="start">
+        <img [src]="publicacion.imagen" [alt]="publicacion.titulo" />
+      </ion-thumbnail>
+
+      <ion-label>
+        <h2>{{ publicacion.titulo }}</h2>
+        <p>{{ publicacion.descripcion }}</p>
+        <p>{{ publicacion.fecha | date:'dd-MM-yyyy' }}</p>
+      </ion-label>
+
+      <!-- Botón para eliminar la publicación -->
+      <ion-button
+        slot="end"
+        color="danger"
+        fill="clear"
+        (click)="confirmarEliminar(i)"
+      >
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #noData>
+    <div style="padding: 16px;">
+      <p>Listado de publicaciones (aún vacío).</p>
+    </div>
+  </ng-template>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/publicacion">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/publicaciones"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Publicación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-list lines="none">
+
+    <!-- TÍTULO -->
+    <ion-item>
+      <ion-label position="stacked">Título</ion-label>
+      <ion-input
+        [(ngModel)]="titulo"
+        name="titulo"
+        placeholder="Ingresa el título de la publicación">
+      </ion-input>
+    </ion-item>
+    <ion-note
+      color="danger"
+      *ngIf="submitted && (!titulo || titulo.trim().length < 5)">
+      El título es obligatorio y debe tener al menos 5 caracteres.
+    </ion-note>
+
+    <!-- DESCRIPCIÓN -->
+    <ion-item style="margin-top: 12px;">
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-textarea
+        [(ngModel)]="descripcion"
+        name="descripcion"
+        rows="4"
+        placeholder="Describe brevemente el aviso (mínimo 20 caracteres)">
+      </ion-textarea>
+    </ion-item>
+    <ion-note
+      color="danger"
+      *ngIf="submitted && (!descripcion || descripcion.trim().length < 20)">
+      La descripción es obligatoria y debe tener al menos 20 caracteres.
+    </ion-note>
+
+    <!-- FOTOGRAFÍA -->
+    <ion-item style="margin-top: 12px;">
+      <ion-label position="stacked">Fotografía</ion-label>
+      <ion-button expand="block" fill="outline" (click)="seleccionarFoto()">
+        <ion-icon name="camera-outline" slot="start"></ion-icon>
+        FOTOGRAFÍA
+      </ion-button>
+    </ion-item>
+    <ion-note
+      color="danger"
+      *ngIf="submitted && !foto">
+      Debe adjuntar una fotografía para la publicación.
+    </ion-note>
+
+    <!-- PREVISUALIZACIÓN DE FOTO -->
+  <div *ngIf="foto" class="preview-container">
+  <img [src]="foto" class="preview-img" />
+</div>
+
+
+  </ion-list>
+
+  <!-- BOTÓN GUARDAR -->
+  <ion-button
+    expand="block"
+    color="primary"
+    style="margin-top: 24px;"
+    (click)="guardar()">
+    GUARDAR
+  </ion-button>
+
+</ion-content>
