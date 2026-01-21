@@ -15,6 +15,7 @@ Aplicación híbrida desarrollada con **Ionic y Angular** como parte del examen 
 - Angular
 - Capacitor Preferences
 - TypeScript
+- Visual Studio Code
 
 ##  Estructura
 El proyecto se organiza en componentes, servicios y páginas para una correcta separación de responsabilidades.
