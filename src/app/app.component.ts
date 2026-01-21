@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +7,14 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class AppComponent {
+
+  @Input() tituloProyecto: string = 'Peor es Nada';
+
+  @Output() mensajeEmitido = new EventEmitter<string>();
+
+  emitirMensaje() {
+    this.mensajeEmitido.emit('Mensaje enviado desde AppComponent');
+  }
+
   constructor() {}
 }
